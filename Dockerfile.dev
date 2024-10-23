@@ -1,0 +1,20 @@
+FROM node:16-alpine
+     
+USER node
+     
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+     
+COPY --chown=node:node ./package.json ./
+RUN npm install
+COPY --chown=node:node ./ ./
+     
+CMD ["npm", "start"]
+
+## docker build -f Dockerfile.dev -t monsieurgermain:frontend .
+## docker run -it -p 3000:3000 -v /home/node/app/node_modules -v /home/monsieurgermain/frontend:/home/node/app monsieurgermain:frontend
+
+## docker run -p 3000:3000 -v //$(pwd)/node_modules:/app/node_modules -v //$(pwd):/app monsieurgermain/frontend
+
+## Start Command: docker run -p 3000:3000 -v $(pwd)/node_modules:/app/node_modules -v $(pwd):/app monsieurgermain/frontend
+## Build Command: docker build -f Dockerfile.dev -t monsieurgermain/frontend .

@@ -1,0 +1,27 @@
+## This is the Dev docker-compose file
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - "3001:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - .:/home/node/app
+    user: "node" # This ensures that the app runs as the 'node' user
+  frontend-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    volumes:
+      - /home/node/app/node_modules
+      - .:/home/node/app
+    command: ["npm", "run", "test"]
+    user: "node" # This ensures that the app runs as the 'node' user
+
+## docker-compose -f docker-compose.dev.yml up
+## docker-compose -f docker-compose.dev.yml up --build
