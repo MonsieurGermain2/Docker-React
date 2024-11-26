@@ -23,6 +23,6 @@ services:
     command: ["npm", "run", "test"]
     user: "node" # This ensures that the app runs as the 'node' user
 
-## Personal Token: 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
+## Personal Token:
 ## docker-compose -f docker-compose.dev.yml up
 ## docker-compose -f docker-compose.dev.yml up --build
